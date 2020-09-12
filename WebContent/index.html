@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+	<meta charset="utf-8">
+
+	<script src="assets/lib/JQuery.js"></script>
+	<script src="assets/lib/popper.min.js"></script>
+
+	<script src="assets/lib/bootstrap/js/bootstrap.js"></script>
+
+	<script src="assets/lib/Chart.js" type="text/javascript"></script>
+	<script src="assets/lib/Chart.min.js" type="text/javascript"></script>
+	<script src="assets/lib/moment.min.js" type="text/javascript"></script>
+
+	<script src="assets/javascript.js" type="text/javascript"></script>
+
+	<link rel="stylesheet" href="assets/lib/bootstrap/css/bootstrap.css">
+
+	<link rel="stylesheet" href="assets/custom.css">
+
+	<title>Gestionale entrate e uscite</title>
+</head>
+
+<body>
+	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+		<a class="navbar-brand" href=".">Gestionale entrate/uscite</a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
+			aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+	</nav>
+
+	<div id="inputEntrateuscite" class="row">
+		<div class="col-4 box-col">
+			<form>
+				<div class="form-group">
+					<label for="tipoentrata">Inserisci il tipo di entrata</label>
+					<input type="text" class="form-control" id="tipoentrata" placeholder="Inserisci il tipo di entrata">
+				</div>
+
+				<div class="form-group">
+					<label for="valoreentrata">Inserisci il valore dell' entrata in €</label>
+					<input type="number" class="form-control" id="valoreentrata" placeholder="xxxx.xx">
+				</div>
+
+				<div class="form-group row">
+					<label for="dataEntrata" class="col-2 col-form-label">Inserisci la data</label>
+					<div class="col-10">
+						<input class="form-control" type="date" id="dataEntrata">
+					</div>
+				</div>
+				<button id="inserisciEntrata" type="button" class="btn btn-secondary">Inserisci entrata</button>
+			</form>
+		</div>
+
+		<div class="col-4 box-col">
+			<form>
+				<div class="form-group">
+					<label for="spesa">Inserisci la voce spesa</label>
+					<input type="text" class="form-control" id="spesa" placeholder="Inserisci la voce spesa">
+				</div>
+
+				<div class="form-group">
+					<label for="prezzo">Inserisci il prezzo</label>
+					<input type="number" class="form-control" id="prezzo" placeholder="xxxx.xx">
+				</div>
+
+				<div class="form-group row">
+					<label for="dataUscita" class="col-2 col-form-label">Inserisci la data</label>
+					<div class="col-10">
+						<input class="form-control" type="date" id="dataUscita">
+					</div>
+				</div>
+				<button id="inserisciUscita" type="button" class="btn btn-secondary">Inserisci uscita</button>
+			</form>
+		</div>
+	</div>
+
+	<div id="graficiEntrateUScite" class="row">
+		<div id="graficoEntrate" class="col-6">
+
+		</div>
+
+		<div class="col-6">
+			<div id="graficoUscite" class="row"></div>
+			<div id="tooltip_mesi" class="row">
+
+				<button type="button" id="febbraio" class="btn btn-primary tool" data-toggle="tooltip"
+					data-placement="top">
+					Febbraio
+				</button>
+				<button type="button" id="marzo" class="btn btn-primary tool" data-toggle="tooltip"
+					data-placement="top">
+					Marzo
+				</button>
+				<button type="button" id="aprile" class="btn btn-warning tool" data-toggle="tooltip"
+					data-placement="top">
+					Aprile
+				</button>
+				<button type="button" id="maggio" class="btn btn-warning tool" data-toggle="tooltip"
+					data-placement="top">
+					Maggio<button type="button" id="gennaio" class="btn btn-primary tool" data-toggle="tooltip"
+						data-placement="top">Gennaio</button>
+				</button>
+				<button type="button" id="giugno" class="btn btn-danger tool" data-toggle="tooltip"
+					data-placement="top">
+					Giugno
+				</button>
+				<button type="button" id="luglio" class="btn btn-danger tool" data-toggle="tooltip"
+					data-placement="top">
+					Luglio
+				</button>
+				<button type="button" id="agosto" class="btn btn-danger tool" data-toggle="tooltip"
+					data-placement="top">
+					Agosto
+				</button>
+				<button type="button" id="settembre" class="btn btn-warning tool" data-toggle="tooltip"
+					data-placement="top">
+					Settembre
+				</button>
+				<button type="button" id="ottobre" class="btn btn-warning tool" data-toggle="tooltip"
+					data-placement="top">
+					Ottobre
+				</button>
+				<button type="button" id="novembre" class="btn btn-info tool" data-toggle="tooltip"
+					data-placement="top">
+					Novembre
+				</button>
+				<button type="button" id="dicembre" class="btn btn-info tool" data-toggle="tooltip"
+					data-placement="top">
+					Dicembre
+				</button>
+			</div>
+		</div>
+	</div>
+
+	<div id="confrontoEntrateUscite" class="row">
+		<div id="confEntrateUScite" class="col-12"></div>
+	</div>
+
+	<div id="resoconto" class="row">
+		<div id="resocontoEntrate" class="col-4">
+			<div class="alert alert-success text-center" role="alert">
+			</div>
+		</div>
+		<div id="resocontoUscite" class="col-4">
+			<div class="alert alert-danger text-center" role="alert">
+			</div>
+		</div>
+		<div id="resocontoRealeRisparmi" class="col-4">
+			<div class="alert alert-info text-center" role="alert">
+			</div>
+		</div>
+	</div>
+
+	<footer id="footer" class="py-4 bg-dark text-white-50">
+		<div class="container text-center">
+			<small>Roberto Bellardi Gioli</small>
+		</div>
+	</footer>
+</body>
+
+</html>
