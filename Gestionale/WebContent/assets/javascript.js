@@ -253,7 +253,7 @@ function creaGraficoConfrontoEntrateUscite(array) {
 
 	for (var k = i; array["confrontoUscita" + (k + 1)]; k++) {
 		pos = Number((array["confrontoUscita" + (k + 1)].data).substring(0, 7).substring(5, 7));
-		arrUscite[pos - 1] += array["confrontoUscita" + (k + 1)].prezzo;
+		arrUscite[pos - 1] += Number(array["confrontoUscita" + (k + 1)].prezzo.toFixed(2));
 	}
 
 	for (var j = 0; j < 12; j++) {
@@ -265,6 +265,8 @@ function creaGraficoConfrontoEntrateUscite(array) {
 		entrateTotali += Number(arrEntrate[j]);
 		usciteTotali += Number(arrUscite[j]);
 	}
+	
+	usciteTotali = usciteTotali.toFixed(2);
 
 	var ctx = $("#myChartConfronto");
 	var myChart = new Chart(ctx, {
@@ -325,13 +327,13 @@ function creaResoconto(id, cifra, label) {
 }
 
 function successo(id) {
-	$("#tipoentrata").val(" ");
-	$("#valoreentrata").val(" ");
-	$("#data").val(" ");
+	$("#tipoentrata").val("");
+	$("#valoreentrata").val("");
+	$("#data").val("");
 
-	$("#spesa").val(" ");
-	$("#prezzo").val(" ");
-	$("#dataUscita").val(" ");
+	$("#spesa").val("");
+	$("#prezzo").val("");
+	$("#dataUscita").val("");
 
 	$(id).after("<h1 class='msg success'>Inserimento avvenuto con successo</h1>");
 	$(".success").delay(3000).fadeOut("slow");
