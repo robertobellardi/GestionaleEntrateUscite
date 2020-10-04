@@ -73,8 +73,6 @@ function richiestaGraficoEntrate() {
 		console.log("Errore richiesta richiestaGraficoEntrate -> fail");
 	}).done(function (ajaxO, ajaxStatus, ajaxObj) {
 		if (ajaxO["entrate1"]) {
-			$("#myChartEntrate").remove()
-			$("#graficoEntrate").append('<canvas id="myChartEntrate"></canvas>');
 			creaGraficoEntrate(ajaxO);
 		}
 	});
@@ -110,49 +108,92 @@ function richiestaConfrontoEntrateUscite() {
 
 function creaGraficoEntrate(array) {
 	var mesi = ["gennaio", "febbraio", "marzo", "aprile", "maggio", "giugno", "luglio", "agosto", "settembre", "ottobre", "novembre", "dicembre"];
-	var arrlabels = [12];
-	var arrentrate = [12];
+	var entrateTot = {};
+	class objEntrate {
+		constructor(mesi, anno) {
+			this.id = "";
+			this.anno = anno
+			this.mesi = mesi;
+			this.arrentrate = new Array(12);
+			this.arrlabels = new Array(12);
 
-	var pos = -1;
-
-	for (var j = 0; j < 12; j++) {
-		arrentrate[j] = 0;
-		arrlabels[j] = "";
-	}
-
-	for (var i = 0; array["entrate" + (i + 1)]; i++) {
-		pos = Number((array["entrate" + (i + 1)].data).substring(0, 7).substring(5, 7));
-		arrentrate[pos - 1] += array["entrate" + (i + 1)].valore;
-		arrlabels[pos - 1] += array["entrate" + (i + 1)].tipo_entrata;
-	}
-
-	for (var j = 0; j < 12; j++) {
-		arrentrate[j] = Number(arrentrate[j]).toFixed(2);
-	}
-
-	var ctx = $("#myChartEntrate");
-	var myChart = new Chart(ctx, {
-		type: 'line',
-		data: {
-			labels: mesi,
-			datasets: [{
-				label: "Entrate in €",
-				data: arrentrate,
-				backgroundColor: random_rgba(),
-				borderColor: random_rgba(),
-				borderWidth: 1
-			}]
-		},
-		options: {
-			scales: {
-				yAxes: [{
-					ticks: {
-						beginAtZero: true
-					}
-				}]
+			// Azzeramento array dati: sia i prezzi che le parole
+			for (var j = 0; j < 12; j++) {
+				this.arrentrate[j] = 0;
+				this.arrlabels[j] = "";
 			}
 		}
-	});
+	}
+	var pos = -1;
+	var anno = 0;
+	var contAnno = [];
+
+	for (var i = 0; array["entrate" + (i + 1)]; i++) {
+		anno = Number((array["entrate" + (i + 1)].data).substring(0, 4));
+
+		// Creazione oggetto entrate tot: 
+		// al primo ciclo e quando cambia l'anno devo creare un nuovo oggetto entrata 
+		// da aggiungere all'oggetto entrate tot
+		if (!array["entrate" + (i)] || (array["entrate" + (i)] && anno != Number((array["entrate" + (i)].data).substring(0, 4)))) {
+			contAnno.push(anno);
+			entrateTot[anno] = new objEntrate(mesi, anno);
+			entrateTot[anno].id = "myChartEntrate" + anno;
+		}
+		pos = Number((array["entrate" + (i + 1)].data).substring(0, 7).substring(5, 7));
+		entrateTot[anno].arrentrate[pos - 1] += array["entrate" + (i + 1)].valore;
+		entrateTot[anno].arrlabels[pos - 1] += array["entrate" + (i + 1)].tipo_entrata;
+	}
+
+	// Imposto come massimo numero dopo la virgola 2 cifre
+	for (i = 0; i < contAnno.length; i++)
+		for (var j = 0; j < 12; j++)
+			entrateTot[contAnno[i]].arrentrate[j] = Number(entrateTot[contAnno[i]].arrentrate[j]).toFixed(2);
+
+	var html = "";
+	// Ciclo sul'oggetto che mi sono creato per ottenere un carosello di grafici
+	for (i = 0; i < contAnno.length; i++) {
+		$("#" + entrateTot[contAnno[i]].id).remove();
+		html = "";
+		if (i == 0)
+			html += '<div class="carousel-item active"><canvas id="' +
+			entrateTot[contAnno[i]].id +
+			'"></canvas><span class="badge badge-dark badgeAnno">' +
+			entrateTot[contAnno[i]].anno +
+			'</span></div>';
+		else
+			html += '<div class="carousel-item"><canvas id="' +
+			entrateTot[contAnno[i]].id +
+			'"></canvas><span class="badge badge-dark badgeAnno">' +
+			entrateTot[contAnno[i]].anno +
+			'</span></div>';
+
+		$("#carosellograficoEntrateLista").append(html);
+
+		var ctx = $("#" + entrateTot[contAnno[i]].id);
+		var myChart = new Chart(ctx, {
+			type: 'line',
+			data: {
+				labels: entrateTot[contAnno[i]].mesi,
+				datasets: [{
+					label: "Entrate in €",
+					data: entrateTot[contAnno[i]].arrentrate,
+					backgroundColor: random_rgba(),
+					borderColor: random_rgba(),
+					borderWidth: 1
+				}]
+			},
+			options: {
+				scales: {
+					yAxes: [{
+						ticks: {
+							beginAtZero: true
+						}
+					}]
+				}
+			}
+		});
+	}
+	$('#carosellograficoEntrate').carousel()
 }
 
 function creaGraficoUscite(array) {
@@ -265,7 +306,7 @@ function creaGraficoConfrontoEntrateUscite(array) {
 		entrateTotali += Number(arrEntrate[j]);
 		usciteTotali += Number(arrUscite[j]);
 	}
-	
+
 	usciteTotali = usciteTotali.toFixed(2);
 
 	var ctx = $("#myChartConfronto");

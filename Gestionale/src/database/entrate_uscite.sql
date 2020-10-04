@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Creato il: Set 24, 2020 alle 17:15
+-- Creato il: Ott 04, 2020 alle 13:01
 -- Versione del server: 5.7.26
 -- Versione PHP: 7.2.18
 
@@ -35,7 +35,7 @@ CREATE TABLE IF NOT EXISTS `entrate` (
   `data` varchar(256) NOT NULL,
   `valore` float NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 
 --
 -- Dump dei dati per la tabella `entrate`
@@ -44,7 +44,8 @@ CREATE TABLE IF NOT EXISTS `entrate` (
 INSERT INTO `entrate` (`id`, `tipo_entrata`, `data`, `valore`) VALUES
 (1, 'stipendio', '2020-07-25', 601),
 (2, 'stipendio', '2020-08-25', 1426),
-(5, 'RGi welfare', '2020-09-22', 200);
+(5, 'RGi welfare', '2020-09-22', 200),
+(6, 'Stipendio', '2020-09-25', 1419);
 
 -- --------------------------------------------------------
 
@@ -59,7 +60,7 @@ CREATE TABLE IF NOT EXISTS `uscite` (
   `data` varchar(256) NOT NULL,
   `prezzo` float NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=24 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=28 DEFAULT CHARSET=utf8;
 
 --
 -- Dump dei dati per la tabella `uscite`
@@ -84,7 +85,11 @@ INSERT INTO `uscite` (`id`, `voce_spesa`, `data`, `prezzo`) VALUES
 (20, 'Gelato romana', '2020-09-19', 3),
 (21, '2 barre di ferro Leroy merlin', '2020-09-20', 11.1),
 (22, 'Rifilatore Makita + set 15 frese', '2020-09-22', 275.44),
-(23, 'Costo spedizione rifilatore makita', '2020-09-22', 14.48);
+(23, 'Costo spedizione rifilatore makita', '2020-09-22', 14.48),
+(24, 'Caffè + voce ', '2020-09-26', 10),
+(25, 'Pieno Y', '2020-09-26', 50),
+(26, '2 Toast + birra + gelato', '2020-09-27', 18.4),
+(27, 'Taglio capelli + pub Denise', '2020-10-03', 40);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

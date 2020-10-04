@@ -29,3 +29,12 @@ body {
 .error {
 	color: red;
 }
+
+.icona {
+	background-color: black;
+	border-radius: 25px;
+}
+
+.badgeAnno {
+	margin-left: 50%;
+}
