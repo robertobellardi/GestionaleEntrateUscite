@@ -13,7 +13,11 @@ body {
 
 .tool {
 	margin: 10px 5px;
-	width: 100px;
+	width: 110px;
+}
+
+.tooltip_row {
+	margin-left: 60px;
 }
 
 #inputEntrateuscite,

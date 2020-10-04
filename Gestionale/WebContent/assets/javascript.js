@@ -85,8 +85,6 @@ function richiestaGraficoUscite() {
 		console.log("Errore richiesta richiestaGraficoUscite -> fail");
 	}).done(function (ajaxO, ajaxStatus, ajaxObj) {
 		if (ajaxO["uscite1"]) {
-			$("#myChartUscite").remove()
-			$("#graficoUscite").append('<canvas id="myChartUscite"></canvas>');
 			creaGraficoUscite(ajaxO);
 		}
 	});
@@ -193,7 +191,7 @@ function creaGraficoEntrate(array) {
 			}
 		});
 	}
-	$('#carosellograficoEntrate').carousel()
+	$('#carosellograficoEntrate').carousel();
 }
 
 function creaGraficoUscite(array) {
@@ -211,7 +209,6 @@ function creaGraficoUscite(array) {
 		random_rgba(),
 		random_rgba(),
 	];
-
 	var bordercolor = [random_rgba(),
 		random_rgba(),
 		random_rgba(),
@@ -225,52 +222,99 @@ function creaGraficoUscite(array) {
 		random_rgba(),
 		random_rgba(),
 	];
+	var usciteTot = {};
+	class objUscite {
+		constructor(mesi, anno) {
+			this.id = "";
+			this.anno = anno
+			this.mesi = mesi;
+			this.arrprezzo = new Array(12);
+			this.arrspese = new Array(12);
 
-	var arrspese = [12];
-	var arrprezzo = [12];
-	var pos = -1;
-
-	for (var j = 0; j < 12; j++) {
-		arrprezzo[j] = 0;
-		arrspese[j] = "<ul>";
-	}
-
-	for (var i = 0; array["uscite" + (i + 1)]; i++) {
-		pos = Number((array["uscite" + (i + 1)].data).substring(0, 7).substring(5, 7));
-		arrspese[pos - 1] += "<li>" + array["uscite" + (i + 1)].spesa + " -> " + array["uscite" + (i + 1)].prezzo + " € </li>";
-		arrprezzo[pos - 1] += array["uscite" + (i + 1)].prezzo;
-	}
-
-	for (var j = 0; j < 12; j++) {
-		arrspese[j] += "</ul>";
-		arrprezzo[j] = Number(arrprezzo[j]).toFixed(2);
-	}
-
-	var ctx = $("#myChartUscite");
-	var myChart = new Chart(ctx, {
-		type: 'bar',
-		data: {
-			labels: mesi,
-			datasets: [{
-				label: "Spesa in €",
-				data: arrprezzo,
-				backgroundColor: backgroundcolor,
-				borderColor: bordercolor,
-				borderWidth: 1
-			}]
-		},
-		options: {
-			scales: {
-				yAxes: [{
-					ticks: {
-						beginAtZero: true
-					}
-				}]
+			// Azzeramento array dati: sia i prezzi che le parole
+			for (var j = 0; j < 12; j++) {
+				this.arrprezzo[j] = 0;
+				this.arrspese[j] = "<ul>";
 			}
 		}
-	});
+	}
+	var pos = -1;
+	var anno = 0;
+	var contAnno = [];
 
-	creaTooltip(arrspese, mesi);
+	for (var i = 0; array["uscite" + (i + 1)]; i++) {
+		anno = Number((array["uscite" + (i + 1)].data).substring(0, 4));
+		// Creazione oggetto uscite tot: 
+		// al primo ciclo e quando cambia l'anno devo creare un nuovo oggetto uscite 
+		// da aggiungere all'oggetto uscite tot
+		if (!array["uscite" + (i)] || (array["uscite" + (i)] && anno != Number((array["uscite" + (i)].data).substring(0, 4)))) {
+			contAnno.push(anno);
+			usciteTot[anno] = new objUscite(mesi, anno);
+			usciteTot[anno].id = "myChartUscite" + anno;
+		}
+		pos = Number((array["uscite" + (i + 1)].data).substring(0, 7).substring(5, 7));
+		usciteTot[anno].arrspese[pos - 1] += "<li>" + array["uscite" + (i + 1)].spesa + " -> " + array["uscite" + (i + 1)].prezzo + " € </li>";
+		usciteTot[anno].arrprezzo[pos - 1] += array["uscite" + (i + 1)].prezzo;
+	}
+	// Imposto come massimo numero dopo la virgola 2 cifre e chiudo le liste 
+	for (i = 0; i < contAnno.length; i++)
+		for (var j = 0; j < 12; j++) {
+			usciteTot[contAnno[i]].arrspese[j] += "</ul>";
+			usciteTot[contAnno[i]].arrprezzo[j] = Number(usciteTot[contAnno[i]].arrprezzo[j]).toFixed(2);
+		}
+	var html = "";
+	// Ciclo sul'oggetto che mi sono creato per ottenere un carosello di grafici
+	for (i = 0; i < contAnno.length; i++) {
+		$("#" + usciteTot[contAnno[i]].id).remove();
+		html = "";
+
+		if (i == 0) {
+			html += '<div class="carousel-item active"><canvas id="' +
+				usciteTot[contAnno[i]].id +
+				'"></canvas>' +
+				'<div id="tooltip_mesi_' + contAnno[i] + '" class="row tooltip_row"></div>' +
+				'<span class="badge badge-dark badgeAnno">' +
+				usciteTot[contAnno[i]].anno +
+				'</span></div>';
+		} else {
+			html += '<div class="carousel-item"><canvas id="' +
+				usciteTot[contAnno[i]].id +
+				'"></canvas>' +
+				'<div id="tooltip_mesi_' + contAnno[i] + '" class="row tooltip_row"></div>' +
+				'<span class="badge badge-dark badgeAnno">' +
+				usciteTot[contAnno[i]].anno +
+				'</span></div>';
+		}
+
+		$("#carosellograficoUsciteLista").append(html);
+
+		creaTooltip(contAnno[i], usciteTot[contAnno[i]].arrspese, mesi);
+
+		var ctx = $("#" + usciteTot[contAnno[i]].id);
+		var myChart = new Chart(ctx, {
+			type: 'bar',
+			data: {
+				labels: usciteTot[contAnno[i]].mesi,
+				datasets: [{
+					label: "Spesa in €",
+					data: usciteTot[contAnno[i]].arrprezzo,
+					backgroundColor: backgroundcolor,
+					borderColor: bordercolor,
+					borderWidth: 1
+				}]
+			},
+			options: {
+				scales: {
+					yAxes: [{
+						ticks: {
+							beginAtZero: true
+						}
+					}]
+				}
+			}
+		});
+	}
+	$('#carosellograficoUscite').carousel();
 }
 
 function creaGraficoConfrontoEntrateUscite(array) {
@@ -346,15 +390,15 @@ function creaGraficoConfrontoEntrateUscite(array) {
 	creaResoconto("#resocontoRealeRisparmi", entrateTotali - usciteTotali, "Guadagno reale: ");
 }
 
-function creaTooltip(spese, mesi) {
+function creaTooltip(anno, spese, mesi) {
 	var colori = ["primary", "primary", "primary", "warning", "warning", "danger", "danger", "danger", "warning", "warning", "info", "info", ]
 
-	for (var i = 0; i < 12; i++) {
-		$("#tooltip_mesi").children().remove("#" + mesi[i]);
-	}
+	for (var i = 0; i < 12; i++)
+		$("#tooltip_mesi_" + anno).children().remove("#" + mesi[i]);
+
 
 	for (var i = 0; i < 12; i++) {
-		$("#tooltip_mesi").append('<button type="button" id="' + mesi[i] + '" class="btn btn-' + colori[i] + ' tool" data-toggle="tooltip" data-placement="top" title="' + spese[i] + '">' + mesi[i] + "</button>");
+		$("#tooltip_mesi_" + anno).append('<button type="button" id="' + mesi[i] + '" class="btn btn-' + colori[i] + ' tool" data-toggle="tooltip" data-placement="top" title="' + spese[i] + '">' + mesi[i] + "</button>");
 	}
 
 	$('[data-toggle="tooltip"]').tooltip({

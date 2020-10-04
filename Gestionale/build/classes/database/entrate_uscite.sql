@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Creato il: Set 12, 2020 alle 00:23
+-- Creato il: Ott 04, 2020 alle 13:01
 -- Versione del server: 5.7.26
 -- Versione PHP: 7.2.18
 
@@ -35,7 +35,7 @@ CREATE TABLE IF NOT EXISTS `entrate` (
   `data` varchar(256) NOT NULL,
   `valore` float NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 
 --
 -- Dump dei dati per la tabella `entrate`
@@ -43,7 +43,9 @@ CREATE TABLE IF NOT EXISTS `entrate` (
 
 INSERT INTO `entrate` (`id`, `tipo_entrata`, `data`, `valore`) VALUES
 (1, 'stipendio', '2020-07-25', 601),
-(2, 'stipendio', '2020-08-25', 1426);
+(2, 'stipendio', '2020-08-25', 1426),
+(5, 'RGi welfare', '2020-09-22', 200),
+(6, 'Stipendio', '2020-09-25', 1419);
 
 -- --------------------------------------------------------
 
@@ -58,7 +60,7 @@ CREATE TABLE IF NOT EXISTS `uscite` (
   `data` varchar(256) NOT NULL,
   `prezzo` float NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=14 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=28 DEFAULT CHARSET=utf8;
 
 --
 -- Dump dei dati per la tabella `uscite`
@@ -73,7 +75,21 @@ INSERT INTO `uscite` (`id`, `voce_spesa`, `data`, `prezzo`) VALUES
 (10, 'Leroy Merlin: viti', '2020-09-06', 4.05),
 (11, 'Pizza: 3', '2020-09-06', 23),
 (12, 'Cocktail sabato sera', '2020-09-05', 11),
-(13, 'Uscita amici corso ', '2020-09-11', 11);
+(13, 'Uscita amici corso ', '2020-09-11', 11),
+(14, 'SPesa sushi e yougurt', '2020-09-12', 9.49),
+(15, 'kebab', '2020-09-13', 15),
+(16, 'Pastiglie freno', '2020-09-14', 13.98),
+(17, 'Cena Urban street food Lory Denise e Caro', '2020-09-15', 28.75),
+(18, 'Multa ', '2020-09-18', 46.59),
+(19, '2 piatti kebab + 2 coce zero', '2020-09-19', 17),
+(20, 'Gelato romana', '2020-09-19', 3),
+(21, '2 barre di ferro Leroy merlin', '2020-09-20', 11.1),
+(22, 'Rifilatore Makita + set 15 frese', '2020-09-22', 275.44),
+(23, 'Costo spedizione rifilatore makita', '2020-09-22', 14.48),
+(24, 'Caffè + voce ', '2020-09-26', 10),
+(25, 'Pieno Y', '2020-09-26', 50),
+(26, '2 Toast + birra + gelato', '2020-09-27', 18.4),
+(27, 'Taglio capelli + pub Denise', '2020-10-03', 40);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
