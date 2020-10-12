@@ -151,17 +151,23 @@ function creaGraficoEntrate(array) {
 	// Ciclo sul'oggetto che mi sono creato per ottenere un carosello di grafici
 	for (i = 0; i < contAnno.length; i++) {
 		$("#" + entrateTot[contAnno[i]].id).remove();
+		$("#badge_entrate_" + contAnno[i]).remove();
+
 		html = "";
 		if (i == 0)
 			html += '<div class="carousel-item active"><canvas id="' +
 			entrateTot[contAnno[i]].id +
-			'"></canvas><span class="badge badge-dark badgeAnno">' +
+			'"></canvas><span id="badge_entrate_' +
+			contAnno[i] +
+			'" class="badge badge-dark badgeAnno">' +
 			entrateTot[contAnno[i]].anno +
 			'</span></div>';
 		else
 			html += '<div class="carousel-item"><canvas id="' +
 			entrateTot[contAnno[i]].id +
-			'"></canvas><span class="badge badge-dark badgeAnno">' +
+			'"></canvas><span id="badge_entrate_' +
+			contAnno[i] +
+			'" class="badge badge-dark badgeAnno">' +
 			entrateTot[contAnno[i]].anno +
 			'</span></div>';
 
@@ -266,22 +272,33 @@ function creaGraficoUscite(array) {
 	// Ciclo sul'oggetto che mi sono creato per ottenere un carosello di grafici
 	for (i = 0; i < contAnno.length; i++) {
 		$("#" + usciteTot[contAnno[i]].id).remove();
+		$("#tooltip_mesi_" + contAnno[i]).remove();
+		$("#badge_uscite_" + contAnno[i]).remove();
+
 		html = "";
 
 		if (i == 0) {
 			html += '<div class="carousel-item active"><canvas id="' +
 				usciteTot[contAnno[i]].id +
 				'"></canvas>' +
-				'<div id="tooltip_mesi_' + contAnno[i] + '" class="row tooltip_row"></div>' +
-				'<span class="badge badge-dark badgeAnno">' +
+				'<div id="tooltip_mesi_' +
+				contAnno[i] +
+				'" class="row tooltip_row"></div>' +
+				'<span id="badge_uscite_' +
+				contAnno[i] +
+				'" class="badge badge-dark badgeAnno">' +
 				usciteTot[contAnno[i]].anno +
 				'</span></div>';
 		} else {
 			html += '<div class="carousel-item"><canvas id="' +
 				usciteTot[contAnno[i]].id +
 				'"></canvas>' +
-				'<div id="tooltip_mesi_' + contAnno[i] + '" class="row tooltip_row"></div>' +
-				'<span class="badge badge-dark badgeAnno">' +
+				'<div id="tooltip_mesi_' +
+				contAnno[i] +
+				'" class="row tooltip_row"></div>' +
+				'<span id="badge_uscite_' +
+				contAnno[i] +
+				'" class="badge badge-dark badgeAnno">' +
 				usciteTot[contAnno[i]].anno +
 				'</span></div>';
 		}
