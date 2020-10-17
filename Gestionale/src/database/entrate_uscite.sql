@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Creato il: Ott 04, 2020 alle 13:01
+-- Creato il: Ott 17, 2020 alle 09:52
 -- Versione del server: 5.7.26
 -- Versione PHP: 7.2.18
 
@@ -35,7 +35,7 @@ CREATE TABLE IF NOT EXISTS `entrate` (
   `data` varchar(256) NOT NULL,
   `valore` float NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
 
 --
 -- Dump dei dati per la tabella `entrate`
@@ -60,7 +60,7 @@ CREATE TABLE IF NOT EXISTS `uscite` (
   `data` varchar(256) NOT NULL,
   `prezzo` float NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=28 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=36 DEFAULT CHARSET=utf8;
 
 --
 -- Dump dei dati per la tabella `uscite`
@@ -89,7 +89,14 @@ INSERT INTO `uscite` (`id`, `voce_spesa`, `data`, `prezzo`) VALUES
 (24, 'Caffè + voce ', '2020-09-26', 10),
 (25, 'Pieno Y', '2020-09-26', 50),
 (26, '2 Toast + birra + gelato', '2020-09-27', 18.4),
-(27, 'Taglio capelli + pub Denise', '2020-10-03', 40);
+(27, 'Taglio capelli + pub Denise', '2020-10-03', 40),
+(29, 'Melograni', '2020-10-12', 6.95),
+(30, 'Regalo Vale laurea', '2020-10-09', 50),
+(31, 'Mister Fish pranzo', '2020-10-08', 27),
+(32, 'Regalo Caro active 2 40mm', '2020-10-13', 229),
+(33, 'RIcarica telefono Tim', '2020-10-13', 10),
+(34, 'Borsa Givi + benzina moto', '2020-10-16', 64.6),
+(35, 'Cena taverna di ludwing amici corso', '2020-10-16', 40);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
