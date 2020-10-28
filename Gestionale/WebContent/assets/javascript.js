@@ -431,7 +431,7 @@ function creaResoconto(id, cifra, label) {
 function successo(id) {
 	$("#tipoentrata").val("");
 	$("#valoreentrata").val("");
-	$("#data").val("");
+	$("#dataEntrata").val("");
 
 	$("#spesa").val("");
 	$("#prezzo").val("");
