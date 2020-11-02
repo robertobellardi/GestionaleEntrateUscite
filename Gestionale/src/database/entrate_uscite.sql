@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Creato il: Ott 28, 2020 alle 21:46
+-- Creato il: Nov 02, 2020 alle 19:06
 -- Versione del server: 5.7.26
 -- Versione PHP: 7.2.18
 
@@ -62,7 +62,7 @@ CREATE TABLE IF NOT EXISTS `uscite` (
   `data` varchar(256) NOT NULL,
   `prezzo` float NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=39 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=41 DEFAULT CHARSET=utf8;
 
 --
 -- Dump dei dati per la tabella `uscite`
@@ -101,7 +101,9 @@ INSERT INTO `uscite` (`id`, `voce_spesa`, `data`, `prezzo`) VALUES
 (35, 'Cena taverna di ludwing amici corso', '2020-10-16', 40),
 (36, 'Birre', '2020-10-17', 25),
 (37, 'Pub Denise 3 birre(casa) + 2 birra + 1 patatina + 1 mix', '2020-10-24', 34),
-(38, 'Pizza dominos + fanta + apetize', '2020-10-25', 12.45);
+(38, 'Pizza dominos + fanta + apetize', '2020-10-25', 12.45),
+(39, 'Deca pantaloni bici', '2020-11-02', 29.99),
+(40, 'Regalo patty + creal\'s queen', '2020-10-31', 16.5);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
