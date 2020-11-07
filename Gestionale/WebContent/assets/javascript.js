@@ -14,6 +14,7 @@ window.onload = function () {
 	richiestaGraficoEntrate();
 	richiestaGraficoUscite();
 	richiestaConfrontoEntrateUscite();
+	richiestaConfrontoEntrateUsciteTot();
 }
 
 function inserisciEntrata() {
@@ -36,6 +37,7 @@ function inserisciEntrata() {
 			successo("#inserisciEntrata");
 			richiestaGraficoEntrate();
 			richiestaConfrontoEntrateUscite();
+			richiestaConfrontoEntrateUsciteTot();
 		} else
 			errore("#inserisciEntrata");
 	});
@@ -61,6 +63,7 @@ function inserisciUscita() {
 			successo("#inserisciUscita");
 			richiestaGraficoUscite();
 			richiestaConfrontoEntrateUscite();
+			richiestaConfrontoEntrateUsciteTot();
 		} else
 			errore("#inserisciUscita");
 	});
@@ -100,6 +103,20 @@ function richiestaConfrontoEntrateUscite() {
 			$("#myChartConfronto").remove()
 			$("#confEntrateUScite").append('<canvas id="myChartConfronto"></canvas>');
 			creaGraficoConfrontoEntrateUscite(ajaxO);
+		}
+	});
+}
+
+function richiestaConfrontoEntrateUsciteTot() {
+	var ajax = $.post("richiestaConfrontoEntrateUsciteTot", {}, function (ajaxObj, status) {
+		console.log("status richiesta richiestaConfrontoEntrateUsciteTot: " + status);
+	}).fail(function (ajaxO, ajaxStatus, ajaxObj) {
+		console.log("Errore richiesta richiestaConfrontoEntrateUsciteTot -> fail");
+	}).done(function (ajaxO, ajaxStatus, ajaxObj) {
+		if (ajaxO["entrata1"] || ajaxO["uscita1"]) {
+			$("#myChartConfrontoTot").remove()
+			$("#confEntrateUsciteTot").append('<canvas id="myChartConfrontoTot"></canvas>');
+			creaGraficoConfrontoEntrateUsciteTot(ajaxO);
 		}
 	});
 }
@@ -262,6 +279,7 @@ function creaGraficoUscite(array) {
 		usciteTot[anno].arrspese[pos - 1] += "<li>" + array["uscite" + (i + 1)].spesa + " -> " + array["uscite" + (i + 1)].prezzo + " € </li>";
 		usciteTot[anno].arrprezzo[pos - 1] += array["uscite" + (i + 1)].prezzo;
 	}
+
 	// Imposto come massimo numero dopo la virgola 2 cifre e chiudo le liste 
 	for (i = 0; i < contAnno.length; i++)
 		for (var j = 0; j < 12; j++) {
@@ -353,7 +371,7 @@ function creaGraficoConfrontoEntrateUscite(array) {
 		arrEntrate[pos - 1] += array["confrontoEntrata" + (i + 1)].valore;
 	}
 
-	for (var k = i; array["confrontoUscita" + (k + 1)]; k++) {
+	for (var k = 0; array["confrontoUscita" + (k + 1)]; k++) {
 		pos = Number((array["confrontoUscita" + (k + 1)].data).substring(0, 7).substring(5, 7));
 		arrUscite[pos - 1] += Number(array["confrontoUscita" + (k + 1)].prezzo.toFixed(2));
 	}
@@ -405,6 +423,76 @@ function creaGraficoConfrontoEntrateUscite(array) {
 	creaResoconto("#resocontoEntrate", entrateTotali, "Guadagno potenziale: ");
 	creaResoconto("#resocontoUscite", usciteTotali, "Totale delle spese: ");
 	creaResoconto("#resocontoRealeRisparmi", entrateTotali - usciteTotali, "Guadagno reale: ");
+}
+
+function creaGraficoConfrontoEntrateUsciteTot(array) {
+	var entrateTot = new Array();
+	var usciteTot = new Array();
+
+	var anno = 0;
+	var pos = -1;
+	var contAnnoEntrate = [];
+	var contAnnoUscite = [];
+
+	for (var i = 0; array["entrata" + (i + 1)]; i++) {
+		anno = Number((array["entrata" + (i + 1)].data).substring(0, 4));
+		// Creazione oggetto entrate tot: 
+		// al primo ciclo e quando cambia l'anno devo creare un nuovo oggetto entrata 
+		// da aggiungere all'oggetto entrate tot
+		if (i == 0 || !array["entrata" + (i)] || (array["entrata" + (i)] && anno != Number((array["entrata" + (i)].data).substring(0, 4)))) {
+			contAnnoEntrate.push(anno);
+			pos++;
+			entrateTot[pos] = 0;
+		}
+		entrateTot[pos] += array["entrata" + (i + 1)].valore;
+	}
+
+	pos = -1;
+
+	for (var i = 0; array["uscita" + (i + 1)]; i++) {
+		anno = Number((array["uscita" + (i + 1)].data).substring(0, 4));
+		// Creazione oggetto uscite tot: 
+		// al primo ciclo e quando cambia l'anno devo creare un nuovo oggetto uscita 
+		// da aggiungere all'oggetto uscite tot
+		if (i == 0 || !array["uscita" + (i)] || (array["uscita" + (i)] && anno != Number((array["uscita" + (i)].data).substring(0, 4)))) {
+			contAnnoUscite.push(anno);
+			pos++;
+			usciteTot[pos] = 0;
+		}
+		usciteTot[pos] += array["uscita" + (i + 1)].prezzo;
+	}
+
+	var ctx = $("#myChartConfrontoTot");
+	var myChart = new Chart(ctx, {
+		type: 'line',
+		data: {
+			labels: contAnnoEntrate,
+			datasets: [{
+					label: "Entrate in €",
+					data: entrateTot,
+					backgroundColor: "rgba(2, 185, 2, 0.3)",
+					borderColor: "rgba(0, 116, 0, 1)",
+					borderWidth: 1
+				},
+				{
+					label: "Uscite in €",
+					data: usciteTot,
+					backgroundColor: "rgba(216, 3, 3, 1)",
+					borderColor: "rgba(153, 0, 0, 1)",
+					borderWidth: 1
+				}
+			],
+		},
+		options: {
+			scales: {
+				yAxes: [{
+					ticks: {
+						beginAtZero: true
+					}
+				}]
+			}
+		}
+	});
 }
 
 function creaTooltip(anno, spese, mesi) {

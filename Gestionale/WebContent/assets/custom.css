@@ -26,6 +26,10 @@ body {
 	margin: 25px 0;
 }
 
+#resoconto {
+	margin-left: 0px;
+}
+
 .success {
 	color: green;
 }

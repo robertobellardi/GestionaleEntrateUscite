@@ -17,8 +17,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.json.JSONObject;
 
-@WebServlet("/richiestaConfrontoEntrateUscite")
-public class RichiestaConfrontoEntrateUscite extends HttpServlet {
+@WebServlet("/richiestaConfrontoEntrateUsciteTot")
+public class RichiestaConfrontoEntrateUsciteTot extends HttpServlet {
 		
 	private Connessione connessione=null;
 	private Connection con=null;
@@ -49,7 +49,7 @@ public class RichiestaConfrontoEntrateUscite extends HttpServlet {
 					jsonIm.put("id",rsEntrate.getString(1));
 					jsonIm.put("data",rsEntrate.getString(3));
 					jsonIm.put("valore",rsEntrate.getFloat(4));
-					jsonArray.put("confrontoEntrata"+i, jsonIm);
+					jsonArray.put("entrata"+i, jsonIm);
 					i++;
 				}
 				
@@ -59,7 +59,7 @@ public class RichiestaConfrontoEntrateUscite extends HttpServlet {
 					jsonIm.put("id",rsUscite.getString(1));
 					jsonIm.put("data",rsUscite.getString(3));
 					jsonIm.put("prezzo",rsUscite.getFloat(4));
-					jsonArray.put("confrontoUscita"+i, jsonIm);
+					jsonArray.put("uscita"+i, jsonIm);
 					i++;
 				}
 			} catch (SQLException e) {
