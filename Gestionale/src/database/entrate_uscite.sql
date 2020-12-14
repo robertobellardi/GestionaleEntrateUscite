@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Creato il: Nov 07, 2020 alle 19:06
+-- Creato il: Dic 14, 2020 alle 18:47
 -- Versione del server: 5.7.26
 -- Versione PHP: 7.2.18
 
@@ -35,7 +35,7 @@ CREATE TABLE IF NOT EXISTS `entrate` (
   `data` varchar(256) NOT NULL,
   `valore` float NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=15 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=17 DEFAULT CHARSET=utf8;
 
 --
 -- Dump dei dati per la tabella `entrate`
@@ -47,7 +47,9 @@ INSERT INTO `entrate` (`id`, `tipo_entrata`, `data`, `valore`) VALUES
 (5, 'RGi welfare', '2020-09-22', 200),
 (6, 'Stipendio', '2020-09-25', 1419),
 (9, 'Stipendio Ottobre', '2020-10-26', 1429),
-(10, 'Parte Beppe regalo Caro', '2020-10-26', 10);
+(10, 'Parte Beppe regalo Caro', '2020-10-26', 10),
+(15, 'Stipendio novembre', '2020-11-25', 1504),
+(16, 'Tredicesima', '2020-12-10', 492);
 
 -- --------------------------------------------------------
 
@@ -62,7 +64,7 @@ CREATE TABLE IF NOT EXISTS `uscite` (
   `data` varchar(256) NOT NULL,
   `prezzo` float NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=43 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=50 DEFAULT CHARSET=utf8;
 
 --
 -- Dump dei dati per la tabella `uscite`
@@ -104,7 +106,14 @@ INSERT INTO `uscite` (`id`, `voce_spesa`, `data`, `prezzo`) VALUES
 (38, 'Pizza dominos + fanta + apetize', '2020-10-25', 12.45),
 (39, 'Deca pantaloni bici', '2020-11-02', 29.99),
 (40, 'Regalo patty + creal\'s queen', '2020-10-31', 16.5),
-(42, '5 tubi nespresso vaniglia', '2020-11-07', 23.5);
+(42, '5 tubi nespresso vaniglia', '2020-11-07', 23.5),
+(43, 'Spesa fresco marmellate + cereali', '2020-11-11', 7.97),
+(44, 'Taglio capelli + ricarica telefonica', '2020-11-14', 32),
+(45, 'Satisfactory', '2020-11-14', 29.9),
+(46, 'regalo rico cuffie logitech', '2020-11-27', 40.99),
+(47, 'Kit decalcificazione nespresso', '2020-12-07', 9),
+(48, 'Red dead online', '2020-12-13', 4.99),
+(49, 'RIcarica telefonica', '2020-12-14', 10);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
