@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Creato il: Dic 14, 2020 alle 18:47
+-- Creato il: Gen 28, 2021 alle 20:29
 -- Versione del server: 5.7.26
 -- Versione PHP: 7.2.18
 
@@ -35,7 +35,7 @@ CREATE TABLE IF NOT EXISTS `entrate` (
   `data` varchar(256) NOT NULL,
   `valore` float NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=17 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=19 DEFAULT CHARSET=utf8;
 
 --
 -- Dump dei dati per la tabella `entrate`
@@ -48,8 +48,10 @@ INSERT INTO `entrate` (`id`, `tipo_entrata`, `data`, `valore`) VALUES
 (6, 'Stipendio', '2020-09-25', 1419),
 (9, 'Stipendio Ottobre', '2020-10-26', 1429),
 (10, 'Parte Beppe regalo Caro', '2020-10-26', 10),
+(17, 'Stipendio Dicembre', '2020-12-25', 1485),
 (15, 'Stipendio novembre', '2020-11-25', 1504),
-(16, 'Tredicesima', '2020-12-10', 492);
+(16, 'Tredicesima', '2020-12-10', 492),
+(18, 'stipendio', '2021-01-25', 1346);
 
 -- --------------------------------------------------------
 
@@ -64,7 +66,7 @@ CREATE TABLE IF NOT EXISTS `uscite` (
   `data` varchar(256) NOT NULL,
   `prezzo` float NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=50 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=58 DEFAULT CHARSET=utf8;
 
 --
 -- Dump dei dati per la tabella `uscite`
@@ -113,7 +115,15 @@ INSERT INTO `uscite` (`id`, `voce_spesa`, `data`, `prezzo`) VALUES
 (46, 'regalo rico cuffie logitech', '2020-11-27', 40.99),
 (47, 'Kit decalcificazione nespresso', '2020-12-07', 9),
 (48, 'Red dead online', '2020-12-13', 4.99),
-(49, 'RIcarica telefonica', '2020-12-14', 10);
+(49, 'RIcarica telefonica', '2020-12-14', 10),
+(50, 'regalo caro natale', '2020-12-15', 59),
+(51, 'benzina moto', '2020-12-15', 17.05),
+(52, 'Regalo Mamma e papà', '2020-12-25', 128),
+(53, 'Ricarica tim', '2021-01-15', 10),
+(54, '2 brioches', '2021-01-15', 2),
+(55, 'Ricarica tim ', '2021-01-13', 10),
+(56, 'Parrucchiere', '2021-01-23', 22),
+(57, 'Caffé berlica', '2021-01-24', 4.5);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
