@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Creato il: Gen 28, 2021 alle 20:29
+-- Creato il: Mar 02, 2021 alle 20:06
 -- Versione del server: 5.7.26
 -- Versione PHP: 7.2.18
 
@@ -35,7 +35,7 @@ CREATE TABLE IF NOT EXISTS `entrate` (
   `data` varchar(256) NOT NULL,
   `valore` float NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=19 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=20 DEFAULT CHARSET=utf8;
 
 --
 -- Dump dei dati per la tabella `entrate`
@@ -51,7 +51,8 @@ INSERT INTO `entrate` (`id`, `tipo_entrata`, `data`, `valore`) VALUES
 (17, 'Stipendio Dicembre', '2020-12-25', 1485),
 (15, 'Stipendio novembre', '2020-11-25', 1504),
 (16, 'Tredicesima', '2020-12-10', 492),
-(18, 'stipendio', '2021-01-25', 1346);
+(18, 'stipendio', '2021-01-25', 1346),
+(19, 'Stipendio', '2021-02-25', 1329);
 
 -- --------------------------------------------------------
 
@@ -66,7 +67,7 @@ CREATE TABLE IF NOT EXISTS `uscite` (
   `data` varchar(256) NOT NULL,
   `prezzo` float NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=58 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=65 DEFAULT CHARSET=utf8;
 
 --
 -- Dump dei dati per la tabella `uscite`
@@ -123,7 +124,14 @@ INSERT INTO `uscite` (`id`, `voce_spesa`, `data`, `prezzo`) VALUES
 (54, '2 brioches', '2021-01-15', 2),
 (55, 'Ricarica tim ', '2021-01-13', 10),
 (56, 'Parrucchiere', '2021-01-23', 22),
-(57, 'Caffé berlica', '2021-01-24', 4.5);
+(57, 'Caffé berlica', '2021-01-24', 4.5),
+(58, 'Sushi', '2021-02-07', 28.5),
+(59, 'Cena patty', '2021-02-08', 10),
+(60, 'Ricarica telefonica + bici', '2021-02-13', 20),
+(61, 'Rosa + pranzo', '2021-02-14', 40),
+(62, 'Cena lory', '2021-02-21', 11),
+(63, 'Pranzo', '2021-02-27', 33),
+(64, 'Geato', '2021-02-28', 3);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
