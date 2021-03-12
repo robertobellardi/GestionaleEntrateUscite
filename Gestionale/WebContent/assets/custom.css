@@ -1,6 +1,40 @@
 body {
 	width: 100%;
 	margin: 0;
+	background-color: #343a40 !important;
+}
+
+input {
+	background-color: #343a40 !important;
+	color: white !important;
+}
+
+label {
+	color: white !important;
+}
+
+.navBarFooter {
+	background-color: darkcyan !important;
+	color: white !important;
+}
+
+.btnPers {
+	background-color: darkcyan !important;
+	color: white !important;
+}
+
+a {
+	color: white !important;
+	text-decoration: none;
+	background-color: transparent;
+}
+
+#selezioneAnno {
+	margin: 25px;
+	color: white;
+	background-color: #343a40 !important;
+	border: solid;
+	border-color: darkcyan !important;
 }
 
 .box-col {

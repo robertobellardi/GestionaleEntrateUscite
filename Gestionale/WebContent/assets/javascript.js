@@ -11,9 +11,10 @@ window.onload = function () {
 	$("#dataEntrata").attr("max", data);
 	$("#dataUscita").attr("max", data);
 
+	calcolaAnni(d.getFullYear());
 	richiestaGraficoEntrate();
 	richiestaGraficoUscite();
-	richiestaConfrontoEntrateUscite();
+	richiestaConfrontoEntrateUscite(d.getFullYear());
 	richiestaConfrontoEntrateUsciteTot();
 }
 
@@ -69,6 +70,34 @@ function inserisciUscita() {
 	});
 }
 
+function calcolaAnni(annoCorrente) {
+	var ajax = $.post("richiestaCalcolaGraficoEntrate", {}, function (ajaxObj, status) {
+		console.log("status richiesta calcolaAnni: " + status);
+	}).fail(function (ajaxO, ajaxStatus, ajaxObj) {
+		console.log("Errore richiesta calcolaAnni -> fail");
+	}).done(function (ajaxO, ajaxStatus, ajaxObj) {
+		if (ajaxO["entrate1"]) {
+			var elencoAnni = {};
+			for (var i = 0; ajaxO["entrate" + (i + 1)]; i++) {
+				anno = Number((ajaxO["entrate" + (i + 1)].data).substring(0, 4));
+
+				elencoAnni[anno] = new String(anno);
+			}
+
+			for (var anno in elencoAnni) {
+				if (anno == annoCorrente)
+					$("#selezioneAnno").append('<option selected value="' + anno + '">' + anno + '</option>');
+				else
+					$("#selezioneAnno").append('<option value="' + anno + '">' + anno + '</option>');
+			}
+
+			$("#selezioneAnno").change(function () {
+				richiestaConfrontoEntrateUscite($("#selezioneAnno").val());
+			})
+		}
+	});
+}
+
 function richiestaGraficoEntrate() {
 	var ajax = $.post("richiestaCalcolaGraficoEntrate", {}, function (ajaxObj, status) {
 		console.log("status richiesta richiestaGraficoEntrate: " + status);
@@ -93,7 +122,7 @@ function richiestaGraficoUscite() {
 	});
 }
 
-function richiestaConfrontoEntrateUscite() {
+function richiestaConfrontoEntrateUscite(annoSelezionato) {
 	var ajax = $.post("richiestaConfrontoEntrateUscite", {}, function (ajaxObj, status) {
 		console.log("status richiesta richiestaConfrontoEntrateUscite: " + status);
 	}).fail(function (ajaxO, ajaxStatus, ajaxObj) {
@@ -102,7 +131,7 @@ function richiestaConfrontoEntrateUscite() {
 		if (ajaxO["confrontoEntrata1"] || ajaxO["confrontoUscita1"]) {
 			$("#myChartConfronto").remove()
 			$("#confEntrateUScite").append('<canvas id="myChartConfronto"></canvas>');
-			creaGraficoConfrontoEntrateUscite(ajaxO);
+			creaGraficoConfrontoEntrateUscite(ajaxO, annoSelezionato);
 		}
 	});
 }
@@ -352,11 +381,13 @@ function creaGraficoUscite(array) {
 	$('#carosellograficoUscite').carousel();
 }
 
-function creaGraficoConfrontoEntrateUscite(array) {
+function creaGraficoConfrontoEntrateUscite(array, annoSelezionato) {
 	var mesi = ["gennaio", "febbraio", "marzo", "aprile", "maggio", "giugno", "luglio", "agosto", "settembre", "ottobre", "novembre", "dicembre"];
 
 	var arrEntrate = [12];
 	var arrUscite = [12];
+	var arrEntrateRes = [12];
+	var arrUsciteRes = [12];
 	var entrateTotali = 0;
 	var usciteTotali = 0;
 	var pos = -1;
@@ -364,26 +395,38 @@ function creaGraficoConfrontoEntrateUscite(array) {
 	for (var j = 0; j < 12; j++) {
 		arrEntrate[j] = 0;
 		arrUscite[j] = 0;
+		arrEntrateRes[j] = 0;
+		arrUsciteRes[j] = 0;
 	}
 
 	for (var i = 0; array["confrontoEntrata" + (i + 1)]; i++) {
+		if ((array["confrontoEntrata" + (i + 1)].data).substring(0, 4) == annoSelezionato) {
+			pos = Number((array["confrontoEntrata" + (i + 1)].data).substring(0, 7).substring(5, 7));
+			arrEntrate[pos - 1] += array["confrontoEntrata" + (i + 1)].valore;
+		}
 		pos = Number((array["confrontoEntrata" + (i + 1)].data).substring(0, 7).substring(5, 7));
-		arrEntrate[pos - 1] += array["confrontoEntrata" + (i + 1)].valore;
+		arrEntrateRes[pos - 1] += array["confrontoEntrata" + (i + 1)].valore;
 	}
 
 	for (var k = 0; array["confrontoUscita" + (k + 1)]; k++) {
+		if ((array["confrontoUscita" + (k + 1)].data).substring(0, 4) == annoSelezionato) {
+			pos = Number((array["confrontoUscita" + (k + 1)].data).substring(0, 7).substring(5, 7));
+			arrUscite[pos - 1] += Number(array["confrontoUscita" + (k + 1)].prezzo.toFixed(2));
+		}
 		pos = Number((array["confrontoUscita" + (k + 1)].data).substring(0, 7).substring(5, 7));
-		arrUscite[pos - 1] += Number(array["confrontoUscita" + (k + 1)].prezzo.toFixed(2));
+		arrUsciteRes[pos - 1] += Number(array["confrontoUscita" + (k + 1)].prezzo.toFixed(2));
 	}
 
 	for (var j = 0; j < 12; j++) {
 		arrEntrate[j] = Number(arrEntrate[j]).toFixed(2);
 		arrUscite[j] = Number(arrUscite[j]).toFixed(2);
+		arrEntrateRes[j] = Number(arrEntrateRes[j]).toFixed(2);
+		arrUsciteRes[j] = Number(arrUsciteRes[j]).toFixed(2);
 	}
 
 	for (var j = 0; j < 12; j++) {
-		entrateTotali += Number(arrEntrate[j]);
-		usciteTotali += Number(arrUscite[j]);
+		entrateTotali += Number(arrEntrateRes[j]);
+		usciteTotali += Number(arrUsciteRes[j]);
 	}
 
 	usciteTotali = usciteTotali.toFixed(2);
