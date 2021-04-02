@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Creato il: Mar 02, 2021 alle 20:06
+-- Creato il: Apr 02, 2021 alle 20:25
 -- Versione del server: 5.7.26
 -- Versione PHP: 7.2.18
 
@@ -35,7 +35,7 @@ CREATE TABLE IF NOT EXISTS `entrate` (
   `data` varchar(256) NOT NULL,
   `valore` float NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=20 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=21 DEFAULT CHARSET=utf8;
 
 --
 -- Dump dei dati per la tabella `entrate`
@@ -52,7 +52,8 @@ INSERT INTO `entrate` (`id`, `tipo_entrata`, `data`, `valore`) VALUES
 (15, 'Stipendio novembre', '2020-11-25', 1504),
 (16, 'Tredicesima', '2020-12-10', 492),
 (18, 'stipendio', '2021-01-25', 1346),
-(19, 'Stipendio', '2021-02-25', 1329);
+(19, 'Stipendio', '2021-02-25', 1329),
+(20, 'stipendio marzo', '2021-03-25', 1349);
 
 -- --------------------------------------------------------
 
@@ -67,7 +68,7 @@ CREATE TABLE IF NOT EXISTS `uscite` (
   `data` varchar(256) NOT NULL,
   `prezzo` float NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=65 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=76 DEFAULT CHARSET=utf8;
 
 --
 -- Dump dei dati per la tabella `uscite`
@@ -131,7 +132,18 @@ INSERT INTO `uscite` (`id`, `voce_spesa`, `data`, `prezzo`) VALUES
 (61, 'Rosa + pranzo', '2021-02-14', 40),
 (62, 'Cena lory', '2021-02-21', 11),
 (63, 'Pranzo', '2021-02-27', 33),
-(64, 'Geato', '2021-02-28', 3);
+(64, 'Geato', '2021-02-28', 3),
+(65, 'Domenica mollica tellia mochi', '2021-03-07', 15),
+(66, 'ricarica tim', '2021-03-13', 15),
+(67, 'benzina ', '2021-03-13', 18.51),
+(68, 'torta lory', '2021-03-13', 16),
+(69, 'gofreria', '2021-03-14', 11),
+(70, 'Brioches + cena patty', '2021-03-16', 40.7),
+(71, 'bordo leroy merlin', '2021-03-26', 3.15),
+(72, 'tastiera logitech ergo', '2021-03-31', 101.49),
+(73, 'Tappetino titanwolf', '2021-03-30', 26.85),
+(74, 'Fascette', '2021-03-30', 9.99),
+(75, 'Struttura scrivania', '2021-03-07', 359.99);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
