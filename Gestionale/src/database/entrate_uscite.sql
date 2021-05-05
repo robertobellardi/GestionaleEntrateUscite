@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Creato il: Apr 02, 2021 alle 20:25
+-- Creato il: Mag 05, 2021 alle 09:32
 -- Versione del server: 5.7.26
 -- Versione PHP: 7.2.18
 
@@ -35,7 +35,7 @@ CREATE TABLE IF NOT EXISTS `entrate` (
   `data` varchar(256) NOT NULL,
   `valore` float NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=21 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=23 DEFAULT CHARSET=utf8;
 
 --
 -- Dump dei dati per la tabella `entrate`
@@ -53,7 +53,9 @@ INSERT INTO `entrate` (`id`, `tipo_entrata`, `data`, `valore`) VALUES
 (16, 'Tredicesima', '2020-12-10', 492),
 (18, 'stipendio', '2021-01-25', 1346),
 (19, 'Stipendio', '2021-02-25', 1329),
-(20, 'stipendio marzo', '2021-03-25', 1349);
+(20, 'stipendio marzo', '2021-03-25', 1349),
+(21, 'stipendio', '2021-04-25', 1387),
+(22, 'ricarica nespresso', '2021-04-27', 100);
 
 -- --------------------------------------------------------
 
@@ -68,7 +70,7 @@ CREATE TABLE IF NOT EXISTS `uscite` (
   `data` varchar(256) NOT NULL,
   `prezzo` float NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=76 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=80 DEFAULT CHARSET=utf8;
 
 --
 -- Dump dei dati per la tabella `uscite`
@@ -143,7 +145,11 @@ INSERT INTO `uscite` (`id`, `voce_spesa`, `data`, `prezzo`) VALUES
 (72, 'tastiera logitech ergo', '2021-03-31', 101.49),
 (73, 'Tappetino titanwolf', '2021-03-30', 26.85),
 (74, 'Fascette', '2021-03-30', 9.99),
-(75, 'Struttura scrivania', '2021-03-07', 359.99);
+(75, 'Struttura scrivania', '2021-03-07', 359.99),
+(76, 'Ricarica brioches  mochi mac boon poke gomme borsa bici ', '2021-04-28', 92.4),
+(77, 'Attrezzi bici deca', '2021-05-03', 14.77),
+(78, 'Bombolette leroy', '2021-05-03', 23.88),
+(79, 'nespresso', '2021-04-27', 95.9);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
