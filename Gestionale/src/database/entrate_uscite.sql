@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Creato il: Mag 05, 2021 alle 09:32
+-- Creato il: Giu 20, 2021 alle 20:59
 -- Versione del server: 5.7.26
 -- Versione PHP: 7.2.18
 
@@ -35,7 +35,7 @@ CREATE TABLE IF NOT EXISTS `entrate` (
   `data` varchar(256) NOT NULL,
   `valore` float NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=23 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=25 DEFAULT CHARSET=utf8;
 
 --
 -- Dump dei dati per la tabella `entrate`
@@ -55,7 +55,9 @@ INSERT INTO `entrate` (`id`, `tipo_entrata`, `data`, `valore`) VALUES
 (19, 'Stipendio', '2021-02-25', 1329),
 (20, 'stipendio marzo', '2021-03-25', 1349),
 (21, 'stipendio', '2021-04-25', 1387),
-(22, 'ricarica nespresso', '2021-04-27', 100);
+(22, 'ricarica nespresso', '2021-04-27', 100),
+(23, 'stipendio', '2021-05-25', 1349),
+(24, 'buoni walfare', '2021-06-05', 200);
 
 -- --------------------------------------------------------
 
@@ -70,7 +72,7 @@ CREATE TABLE IF NOT EXISTS `uscite` (
   `data` varchar(256) NOT NULL,
   `prezzo` float NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=80 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=96 DEFAULT CHARSET=utf8;
 
 --
 -- Dump dei dati per la tabella `uscite`
@@ -149,7 +151,23 @@ INSERT INTO `uscite` (`id`, `voce_spesa`, `data`, `prezzo`) VALUES
 (76, 'Ricarica brioches  mochi mac boon poke gomme borsa bici ', '2021-04-28', 92.4),
 (77, 'Attrezzi bici deca', '2021-05-03', 14.77),
 (78, 'Bombolette leroy', '2021-05-03', 23.88),
-(79, 'nespresso', '2021-04-27', 95.9);
+(79, 'nespresso', '2021-04-27', 95.9),
+(80, 'Torta lory + parcheggio', '2021-05-16', 10),
+(81, 'pizzium caro', '2021-05-16', 25),
+(82, 'Attrezzi deca ', '2021-05-07', 25.98),
+(83, 'Bombolette leroy', '2021-05-10', 17.97),
+(84, 'Deca', '2021-05-11', 4.99),
+(85, 'gelato poormanger gelato', '2021-05-23', 21.5),
+(86, 'cena caro grigliata gelato', '2021-06-03', 26.5),
+(87, 'deca scarpette vestiario', '2021-06-01', 194.95),
+(88, 'deca', '2021-05-25', 14.95),
+(89, 'ricarica cell', '2021-05-19', 10),
+(90, 'radiografie', '2021-05-13', 132),
+(91, 'sacra san michele poke cena', '2021-06-06', 34.2),
+(92, 'drink + caro + poke tiramisù', '2021-06-19', 44.4),
+(93, 'aspiratore bosch + sacchetti + parafanghi bici', '2021-06-09', 243.27),
+(94, 'benzina ceresole', '2021-06-19', 19.96),
+(95, 'ricarica + deca', '2021-06-17', 28.18);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
