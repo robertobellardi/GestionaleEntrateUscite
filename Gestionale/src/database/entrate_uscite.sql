@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Creato il: Giu 20, 2021 alle 20:59
+-- Creato il: Lug 27, 2021 alle 09:53
 -- Versione del server: 5.7.26
 -- Versione PHP: 7.2.18
 
@@ -35,7 +35,7 @@ CREATE TABLE IF NOT EXISTS `entrate` (
   `data` varchar(256) NOT NULL,
   `valore` float NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=25 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=29 DEFAULT CHARSET=utf8;
 
 --
 -- Dump dei dati per la tabella `entrate`
@@ -57,7 +57,10 @@ INSERT INTO `entrate` (`id`, `tipo_entrata`, `data`, `valore`) VALUES
 (21, 'stipendio', '2021-04-25', 1387),
 (22, 'ricarica nespresso', '2021-04-27', 100),
 (23, 'stipendio', '2021-05-25', 1349),
-(24, 'buoni walfare', '2021-06-05', 200);
+(24, 'buoni walfare', '2021-06-05', 200),
+(25, 'stipendio', '2021-06-25', 1554),
+(27, 'stipendio', '2021-07-25', 1409),
+(28, 'vendica cuffie', '2021-07-22', 75);
 
 -- --------------------------------------------------------
 
@@ -72,7 +75,7 @@ CREATE TABLE IF NOT EXISTS `uscite` (
   `data` varchar(256) NOT NULL,
   `prezzo` float NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=96 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=107 DEFAULT CHARSET=utf8;
 
 --
 -- Dump dei dati per la tabella `uscite`
@@ -167,7 +170,18 @@ INSERT INTO `uscite` (`id`, `voce_spesa`, `data`, `prezzo`) VALUES
 (92, 'drink + caro + poke tiramisù', '2021-06-19', 44.4),
 (93, 'aspiratore bosch + sacchetti + parafanghi bici', '2021-06-09', 243.27),
 (94, 'benzina ceresole', '2021-06-19', 19.96),
-(95, 'ricarica + deca', '2021-06-17', 28.18);
+(95, 'ricarica + deca', '2021-06-17', 28.18),
+(96, 'poke rico ', '2021-06-27', 13.9),
+(97, 'giannitti', '2021-06-26', 22),
+(98, 'pub denise', '2021-07-03', 33),
+(99, 'pub', '2021-07-07', 29.5),
+(100, 'deca + pub', '2021-07-12', 43.48),
+(101, 'benzina + ricarica', '2021-07-13', 30.8),
+(102, 'torta + pokè', '2021-07-17', 40),
+(103, 'cocktail', '2021-07-24', 10),
+(104, 'ape + sushi', '2021-07-25', 58),
+(105, 'sgrassante catena', '2021-07-24', 13.8),
+(106, 'pub cumple', '2021-06-29', 153.5);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
