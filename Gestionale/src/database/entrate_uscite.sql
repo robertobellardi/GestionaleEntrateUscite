@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Creato il: Lug 27, 2021 alle 09:53
+-- Creato il: Set 19, 2021 alle 12:33
 -- Versione del server: 5.7.26
 -- Versione PHP: 7.2.18
 
@@ -35,7 +35,7 @@ CREATE TABLE IF NOT EXISTS `entrate` (
   `data` varchar(256) NOT NULL,
   `valore` float NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=29 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=31 DEFAULT CHARSET=utf8;
 
 --
 -- Dump dei dati per la tabella `entrate`
@@ -60,7 +60,9 @@ INSERT INTO `entrate` (`id`, `tipo_entrata`, `data`, `valore`) VALUES
 (24, 'buoni walfare', '2021-06-05', 200),
 (25, 'stipendio', '2021-06-25', 1554),
 (27, 'stipendio', '2021-07-25', 1409),
-(28, 'vendica cuffie', '2021-07-22', 75);
+(28, 'vendica cuffie', '2021-07-22', 75),
+(29, 'Stipendio', '2021-08-25', 1412),
+(30, 'Bonifico vale', '2021-09-07', 40);
 
 -- --------------------------------------------------------
 
@@ -75,7 +77,7 @@ CREATE TABLE IF NOT EXISTS `uscite` (
   `data` varchar(256) NOT NULL,
   `prezzo` float NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=107 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=115 DEFAULT CHARSET=utf8;
 
 --
 -- Dump dei dati per la tabella `uscite`
@@ -181,7 +183,15 @@ INSERT INTO `uscite` (`id`, `voce_spesa`, `data`, `prezzo`) VALUES
 (103, 'cocktail', '2021-07-24', 10),
 (104, 'ape + sushi', '2021-07-25', 58),
 (105, 'sgrassante catena', '2021-07-24', 13.8),
-(106, 'pub cumple', '2021-06-29', 153.5);
+(106, 'pub cumple', '2021-06-29', 153.5),
+(107, 'Capelli', '2021-09-07', 22),
+(108, 'Old wild west + colazione', '2021-09-11', 34),
+(109, 'Du cesari lory', '2021-09-14', 28.25),
+(110, 'Gelato', '2021-09-19', 16.5),
+(111, 'Ricarica cell', '2021-09-16', 10),
+(112, 'Mc maggiora', '2021-09-07', 14.5),
+(113, 'benzina', '2021-09-06', 21.93),
+(114, 'Vacanza Sicilia', '2021-08-25', 1200);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
