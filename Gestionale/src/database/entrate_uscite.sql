@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Creato il: Set 19, 2021 alle 12:33
+-- Creato il: Ott 31, 2021 alle 10:59
 -- Versione del server: 5.7.26
 -- Versione PHP: 7.2.18
 
@@ -35,7 +35,7 @@ CREATE TABLE IF NOT EXISTS `entrate` (
   `data` varchar(256) NOT NULL,
   `valore` float NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=31 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=34 DEFAULT CHARSET=utf8;
 
 --
 -- Dump dei dati per la tabella `entrate`
@@ -62,7 +62,10 @@ INSERT INTO `entrate` (`id`, `tipo_entrata`, `data`, `valore`) VALUES
 (27, 'stipendio', '2021-07-25', 1409),
 (28, 'vendica cuffie', '2021-07-22', 75),
 (29, 'Stipendio', '2021-08-25', 1412),
-(30, 'Bonifico vale', '2021-09-07', 40);
+(30, 'Bonifico vale', '2021-09-07', 40),
+(31, 'Stipendio', '2021-08-25', 1412),
+(32, 'Stipendio', '2021-09-25', 2037),
+(33, 'Stipendio', '2021-10-25', 1408);
 
 -- --------------------------------------------------------
 
@@ -77,7 +80,7 @@ CREATE TABLE IF NOT EXISTS `uscite` (
   `data` varchar(256) NOT NULL,
   `prezzo` float NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=115 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=122 DEFAULT CHARSET=utf8;
 
 --
 -- Dump dei dati per la tabella `uscite`
@@ -191,7 +194,14 @@ INSERT INTO `uscite` (`id`, `voce_spesa`, `data`, `prezzo`) VALUES
 (111, 'Ricarica cell', '2021-09-16', 10),
 (112, 'Mc maggiora', '2021-09-07', 14.5),
 (113, 'benzina', '2021-09-06', 21.93),
-(114, 'Vacanza Sicilia', '2021-08-25', 1200);
+(114, 'Vacanza Sicilia', '2021-08-25', 1200),
+(115, 'Cena origami', '2021-10-12', 40),
+(116, 'Ricarica + brioches', '2021-10-13', 13),
+(117, 'Rock burger + regalo pat', '2021-10-30', 36),
+(118, 'Casa bolo', '2021-10-23', 242),
+(119, 'Italo bolo', '2021-10-23', 177.6),
+(120, 'Benzina', '2021-10-19', 20.63),
+(121, 'Dentista', '2021-09-28', 1502);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
