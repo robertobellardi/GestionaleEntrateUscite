@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Creato il: Ott 31, 2021 alle 10:59
+-- Creato il: Dic 24, 2021 alle 19:17
 -- Versione del server: 5.7.26
 -- Versione PHP: 7.2.18
 
@@ -35,7 +35,7 @@ CREATE TABLE IF NOT EXISTS `entrate` (
   `data` varchar(256) NOT NULL,
   `valore` float NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=34 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=38 DEFAULT CHARSET=utf8;
 
 --
 -- Dump dei dati per la tabella `entrate`
@@ -65,7 +65,11 @@ INSERT INTO `entrate` (`id`, `tipo_entrata`, `data`, `valore`) VALUES
 (30, 'Bonifico vale', '2021-09-07', 40),
 (31, 'Stipendio', '2021-08-25', 1412),
 (32, 'Stipendio', '2021-09-25', 2037),
-(33, 'Stipendio', '2021-10-25', 1408);
+(33, 'Stipendio', '2021-10-25', 1408),
+(34, 'Stipendio', '2021-11-25', 1446),
+(35, 'Regalo rico e vale', '2021-12-02', 25),
+(36, 'Stipendio', '2021-12-24', 1406),
+(37, 'tredicesima', '2021-12-15', 1209);
 
 -- --------------------------------------------------------
 
@@ -80,7 +84,7 @@ CREATE TABLE IF NOT EXISTS `uscite` (
   `data` varchar(256) NOT NULL,
   `prezzo` float NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=122 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=139 DEFAULT CHARSET=utf8;
 
 --
 -- Dump dei dati per la tabella `uscite`
@@ -201,7 +205,20 @@ INSERT INTO `uscite` (`id`, `voce_spesa`, `data`, `prezzo`) VALUES
 (118, 'Casa bolo', '2021-10-23', 242),
 (119, 'Italo bolo', '2021-10-23', 177.6),
 (120, 'Benzina', '2021-10-19', 20.63),
-(121, 'Dentista', '2021-09-28', 1502);
+(121, 'Dentista', '2021-09-28', 1502),
+(131, 'Giapponese Rico e vale', '2021-12-02', 25),
+(130, 'Pranzo colleghi', '2021-12-01', 16.9),
+(125, 'Cena beppe + regalo beppe', '2021-11-21', 27.5),
+(126, 'Cheers caro superga', '2021-12-05', 10),
+(127, 'Kebab', '2021-12-06', 8),
+(128, 'Dentista', '2021-11-30', 802),
+(132, 'Cena berberé caro', '2021-12-11', 29.5),
+(133, 'Spiderman lory denise caro', '2021-12-12', 11.9),
+(134, 'Burger king serata cinema caro lory', '2021-12-16', 19.4),
+(135, 'Pranzo natale colleghi corso', '2021-12-18', 30),
+(136, 'Merenda rico beppe', '2021-12-19', 3.3),
+(137, 'Ape bekery caffe amici', '2021-12-19', 10),
+(138, 'Riparazioni bici', '2021-12-23', 288);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
