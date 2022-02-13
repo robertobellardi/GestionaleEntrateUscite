@@ -465,7 +465,7 @@ function creaGraficoConfrontoEntrateUscite(array, annoSelezionato) {
 
 	creaResoconto("#resocontoEntrate", entrateTotali, "Guadagno potenziale: ");
 	creaResoconto("#resocontoUscite", usciteTotali, "Totale delle spese: ");
-	creaResoconto("#resocontoRealeRisparmi", entrateTotali - usciteTotali, "Guadagno reale: ");
+	creaResoconto("#resocontoRealeRisparmi", Number(entrateTotali - usciteTotali).toFixed(2), "Guadagno reale: ");
 }
 
 function creaGraficoConfrontoEntrateUsciteTot(array) {

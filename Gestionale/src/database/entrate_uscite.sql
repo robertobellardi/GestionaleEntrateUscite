@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Creato il: Dic 24, 2021 alle 19:17
+-- Creato il: Feb 13, 2022 alle 21:36
 -- Versione del server: 5.7.26
 -- Versione PHP: 7.2.18
 
@@ -35,7 +35,7 @@ CREATE TABLE IF NOT EXISTS `entrate` (
   `data` varchar(256) NOT NULL,
   `valore` float NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=38 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=41 DEFAULT CHARSET=utf8;
 
 --
 -- Dump dei dati per la tabella `entrate`
@@ -69,7 +69,9 @@ INSERT INTO `entrate` (`id`, `tipo_entrata`, `data`, `valore`) VALUES
 (34, 'Stipendio', '2021-11-25', 1446),
 (35, 'Regalo rico e vale', '2021-12-02', 25),
 (36, 'Stipendio', '2021-12-24', 1406),
-(37, 'tredicesima', '2021-12-15', 1209);
+(37, 'tredicesima', '2021-12-15', 1209),
+(39, 'Regalo nonni', '2021-12-25', 10000),
+(40, 'Stipendio', '2022-01-25', 1385);
 
 -- --------------------------------------------------------
 
@@ -84,7 +86,7 @@ CREATE TABLE IF NOT EXISTS `uscite` (
   `data` varchar(256) NOT NULL,
   `prezzo` float NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=139 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=159 DEFAULT CHARSET=utf8;
 
 --
 -- Dump dei dati per la tabella `uscite`
@@ -218,7 +220,27 @@ INSERT INTO `uscite` (`id`, `voce_spesa`, `data`, `prezzo`) VALUES
 (135, 'Pranzo natale colleghi corso', '2021-12-18', 30),
 (136, 'Merenda rico beppe', '2021-12-19', 3.3),
 (137, 'Ape bekery caffe amici', '2021-12-19', 10),
-(138, 'Riparazioni bici', '2021-12-23', 288);
+(138, 'Riparazioni bici', '2021-12-23', 288),
+(139, 'leroy scatole aerei', '2021-12-30', 18.58),
+(140, 'Capodanno', '2021-12-31', 123.8),
+(141, 'Pub lory denise e caro', '2022-01-04', 11),
+(142, 'Messicano', '2022-01-08', 34),
+(143, 'Capelli', '2022-01-15', 22),
+(144, 'Giretto moto amici', '2022-01-16', 8),
+(145, 'Giretto e burgher rico', '2022-01-23', 13.1),
+(146, 'Caro', '2022-01-27', 13),
+(147, 'Sushi uni', '2022-01-28', 33.8),
+(148, 'Passeggiata colle del lys', '2022-02-06', 3.5),
+(149, 'Pietre affilatura', '2022-01-15', 85),
+(150, 'Ricarica cell', '2022-01-18', 10),
+(151, 'Ricarica cell', '2022-01-19', 10),
+(152, 'Spesa generica', '2022-01-25', 18.81),
+(153, 'Cheers amichetto', '2022-01-28', 25.5),
+(154, 'Lago spina', '2022-02-01', 31.5),
+(155, 'Accessori moto nuova', '2022-02-09', 234),
+(156, 'Borse tubolari paramani', '2022-02-11', 165),
+(157, 'Edit caro', '2022-02-05', 29),
+(158, 'Caro torteria', '2022-02-03', 10.5);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
